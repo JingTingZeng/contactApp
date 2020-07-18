@@ -1,0 +1,12 @@
+<li class="contact-item">
+  <div class="contact-item__figure">
+    <img [src]="contactItem.avatar">
+  </div>
+  <div class="contact-item__info">
+    <div class="contact-item__name">{{contactItem.name}}</div>
+    <div class="contact-item__phone">{{contactItem.phone}}</div>
+  </div>
+  <a [href]="'tel:'+contactItem.phone" class="contact-item__call">
+    <img src="assets/images/icon_phone.svg">
+  </a>
+</li>

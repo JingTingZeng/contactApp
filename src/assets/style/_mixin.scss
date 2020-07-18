@@ -1,0 +1,22 @@
+/// @example 若某元素有滑鼠互動特效時導入
+/// @param {Bool} $self [false] - 當值為 false時，不將本身納入樣式有效對象, 也就是說當值為true時, compile出來的css會是 .element,.element:hover,element:active,.element:focus{...}
+@mixin on-event($self: false) {
+  @if $self {
+
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+
+  @else {
+
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}

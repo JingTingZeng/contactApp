@@ -1,0 +1,27 @@
+/// Regular font family
+/// @type List
+$text-font-stack: Arial,
+"文泉驛正黑",
+"WenQuanYi Zen Hei",
+"蘋方-繁",
+"PingFang TC",
+"黑體-繁",
+"Heiti TC",
+"儷黑 Pro",
+"LiHei Pro",
+"微軟正黑體",
+"Microsoft JhengHei",
+sans-serif !default;
+
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: 'Courier New',
+'DejaVu Sans Mono',
+'Bitstream Vera Sans Mono',
+'Monaco',
+monospace !default;
+
+//functional
+$text-color:#000000 !default;
+$link-color:#2196f3 !default;
+$white: #ffffff;
