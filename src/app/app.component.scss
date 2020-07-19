@@ -1,14 +1,16 @@
 @import '../assets/style/variable';
 
+.wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   min-height: 125px;
   padding: 20px 0;
   background-image: linear-gradient(to right, #00c6fb 0%, #005bea 100%);
@@ -50,7 +52,7 @@
 }
 
 .contact-list {
-  margin-top: 125px;
+  flex: 1;
   padding: 20px 15px;
   overflow: auto;
   -ms-overflow-style: none;
