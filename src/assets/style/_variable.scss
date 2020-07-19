@@ -21,7 +21,12 @@ $code-font-stack: 'Courier New',
 'Monaco',
 monospace !default;
 
-//functional
-$text-color:#000000 !default;
-$link-color:#2196f3 !default;
+//us color
 $white: #ffffff;
+$american-river: #636e72;
+$dracula-orchid: #2d3436;
+$brite-yellow: #fdcb6e;
+$electron-blue: #0984e3;
+
+$text-color: $dracula-orchid;
+$link-color:$electron-blue;
