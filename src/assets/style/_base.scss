@@ -28,6 +28,8 @@
     /* 2 */
     -ms-text-size-adjust: 100%;
     /* 3 */
+
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -137,6 +139,13 @@
 
     &[href] {
       cursor: pointer;
+    }
+
+    &[href^=tel] {
+      @include on-event($self: true) {
+        color: $american-river;
+        text-decoration: none;
+      }
     }
   }
 

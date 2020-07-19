@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Contact } from '../model/contact';
 
 @Component({
   selector: 'app-contact-item',
@@ -6,16 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./contact-item.component.scss']
 })
 export class ContactItemComponent implements OnInit {
-  @Input() public contact: { name: string, phone: string, avatar: string };
-
-  public contactItem: { name: string, phone: string, avatar: string };
+  @Input() public contact: Contact;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.contactItem = this.contact;
-    if (!this.contactItem.avatar) {
-      this.contactItem.avatar = 'assets/images/icon_avatar.svg';
+    if (!this.contact.avatar) {
+      this.contact.avatar = 'assets/images/icon_avatar.svg';
     }
   }
 
