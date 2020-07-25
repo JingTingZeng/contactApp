@@ -1,15 +1,3 @@
 <div class="wrap">
-  <div class="header">
-    <h1 class="header__title">CONTACTS.</h1>
-    <div class="search-bar">
-      <input [(ngModel)]="searchText" (keyup.enter)="search()" (blur)="search(); searchText='' "
-        class="search-bar__input" type="text" placeholder="Search contact">
-      <button type="submit" (click)="search()" class="search-bar__btn">
-        <img src="assets/images/icon_search.svg">
-      </button>
-    </div>
-  </div>
-  <ul class="contact-list">
-    <app-contact-item *ngFor="let item of contactList;index as i" [contact]="item"></app-contact-item>
-  </ul>
+  <router-outlet></router-outlet>
 </div>
