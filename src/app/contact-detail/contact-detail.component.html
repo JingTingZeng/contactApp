@@ -1,0 +1,38 @@
+<div class="wrap detail">
+  <div class="detail__header" [class]="isScroll ?'detail__header--active':''">
+    <a (click)="goToIndex($event)" class="detail__link">
+      <img src="assets/images/icon_back.svg">
+    </a>
+    <div class="detail__avatar">
+      <img [src]="contact.avatar">
+    </div>
+    <div class="detail__name">{{contact.name}}</div>
+
+    <div class="detail__tools">
+      <div class="tool__item"><a class="tool__link" herf="#"><img src="assets/images/icon_phoneLine.svg"></a></div>
+      <div class="tool__item"><a class="tool__link" herf="#"><img src="assets/images/icon_message.svg"></a></div>
+    </div>
+  </div>
+  <ul class="info" id="detail__info">
+    <li *ngIf="contact.mobile || contact.home" class="info__item info__item--primary">
+      <div class="title">Primary</div>
+      <div class="text">{{contact.mobile || contact.home}}</div>
+    </li>
+    <li *ngIf="contact.mobile && contact.home" class="info__item">
+      <div class="title">Home</div>
+      <div class="text">{{contact.home}}</div>
+    </li>
+    <li *ngIf="contact.email" class="info__item">
+      <div class="title">Email</div>
+      <div class="text">{{contact.email}}</div>
+    </li>
+    <li *ngIf="contact.address" class="info__item">
+      <div class="title">Address</div>
+      <div class="text">{{contact.address}}</div>
+    </li>
+  </ul>
+
+  <a href="/createForm" class="detail__edit">
+    <img src="assets/images/icon_edit.svg" alt="">
+  </a>
+</div>

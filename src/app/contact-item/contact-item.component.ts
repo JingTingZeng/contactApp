@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contact } from '../model/contact';
 
 @Component({
@@ -9,12 +10,14 @@ import { Contact } from '../model/contact';
 export class ContactItemComponent implements OnInit {
   @Input() public contact: Contact;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if (!this.contact.avatar) {
-      this.contact.avatar = 'assets/images/icon_avatar.svg';
-    }
   }
 
+  goToDetail(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.router.navigate(['/contactDetail/' + id]);
+  }
 }

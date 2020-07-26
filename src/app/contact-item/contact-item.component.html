@@ -1,12 +1,14 @@
 <li class="contact-item">
-  <div class="contact-item__figure">
-    <img [src]="contact.avatar">
-  </div>
-  <div class="contact-item__info">
-    <div class="contact-item__name">{{contact.name}}</div>
-    <div class="contact-item__phone">{{contact.phone}}</div>
-  </div>
-  <a [href]="'tel:'+contact.phone" class="contact-item__call">
-    <img src="assets/images/icon_phone.svg">
+  <a class="contact-item__link" (click)="goToDetail($event,contact.id)">
+    <div class="contact-item__figure">
+      <img [src]="contact.avatar">
+    </div>
+    <div class="contact-item__info">
+      <div class="contact-item__name">{{contact.name}}</div>
+      <div class="contact-item__phone">{{contact.mobile || contact.home}}</div>
+    </div>
+    <a [href]="'tel:'+contact.mobile || contact.home" class="contact-item__call">
+      <img src="assets/images/icon_phone.svg">
+    </a>
   </a>
 </li>
