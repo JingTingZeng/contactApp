@@ -15,7 +15,7 @@
           <div class="form-item">
             <div class="form-icon"><i class="gg-boy"></i></div>
             <div class="input-group">
-              <input type="text" placeholder="姓名" required name="name" ngModel>
+              <input type="text" placeholder="姓名" required name="name" #name="ngModel" [(ngModel)]="contact.name">
               <div class="input-deco"></div>
               <label class="input-label">姓名</label>
             </div>
@@ -23,7 +23,8 @@
           <div class="form-item">
             <div class="form-icon"><i class="gg-phone"></i></div>
             <div class="input-group">
-              <input type="text" placeholder="手機號碼" required name="mobile" ngModel>
+              <input type="text" placeholder="手機號碼" required name="mobile" #mobile="ngModel"
+                [(ngModel)]="contact.mobile">
               <div class="input-deco"></div>
               <label class="input-label">手機號碼</label>
             </div>
@@ -31,7 +32,7 @@
           <div class="form-item">
             <div class="form-icon"><i class="gg-home-alt"></i></div>
             <div class="input-group">
-              <input type="text" placeholder="住家號碼" name="home" ngModel>
+              <input type="text" placeholder="住家號碼" name="home" #home="ngModel" [(ngModel)]="contact.home">
               <div class="input-deco"></div>
               <label class="input-label">住家號碼</label>
             </div>
@@ -39,7 +40,7 @@
           <div class="form-item">
             <div class="form-icon"><i class="gg-mail"></i></div>
             <div class="input-group">
-              <input type="email" placeholder="電子信箱" name="email" ngModel>
+              <input type="email" placeholder="電子信箱" name="email" #email="ngModel" [(ngModel)]="contact.email">
               <div class="input-deco"></div>
               <label class="input-label">Email</label>
             </div>
@@ -47,7 +48,7 @@
           <div class="form-item">
             <div class="form-icon"><i class="gg-pin"></i></div>
             <div class="input-group">
-              <input type="text" placeholder="地址" name="address" ngModel>
+              <input type="text" placeholder="地址" name="address" #address="ngModel" [(ngModel)]="contact.address">
               <div class="input-deco"></div>
               <label class="input-label">地址</label>
             </div>

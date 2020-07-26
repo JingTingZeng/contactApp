@@ -165,6 +165,7 @@
       @else if $input-type=='underline'or $input-type=='material' {
         +.input-deco {
           height: 1px;
+          background-color: transparent;
 
           &:after {
             transition: transform 0.4s ease;

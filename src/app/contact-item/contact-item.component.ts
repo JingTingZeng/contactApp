@@ -18,6 +18,7 @@ export class ContactItemComponent implements OnInit {
   goToDetail(e, id) {
     e.preventDefault();
     e.stopPropagation();
+
     this.router.navigate(['/contactDetail/' + id]);
   }
 }

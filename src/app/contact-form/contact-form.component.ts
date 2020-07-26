@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Contact } from '../model/contact';
+import { ContactService } from '../services/contact.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -9,12 +10,17 @@ import { Contact } from '../model/contact';
 })
 export class ContactFormComponent implements OnInit {
   public contact: Contact;
+  private id = '';
 
-  constructor(private router: Router) {
-    this.contact = new Contact('', '', '', '', '', '', '');
+  constructor(private route: ActivatedRoute, private router: Router, private contactService: ContactService) {
+    this.contact = new Contact(this.id, '', '', '', '', '', '');
   }
 
   ngOnInit(): void {
+    if (this.route.snapshot.queryParamMap.get('id')) {
+      this.id = this.route.snapshot.queryParamMap.get('id');
+      this.contact = this.contactService.getContact(this.id);
+    }
   }
 
   goToIndex(e) {
@@ -24,8 +30,13 @@ export class ContactFormComponent implements OnInit {
   }
 
   createContact(contactForm) {
-    const id = '9';
-    this.contact = contactForm.value.contact;
-    this.router.navigate(['/contactDetail/' + id]);
+    const created = this.contactService.createContact(this.contact);
+    if (created) {
+      this.id = '123';
+      this.contact = new Contact(this.id, '', '', '', '', '', '');
+    } else {
+      this.contact = contactForm.value.contact;
+    }
+    this.router.navigate(['/contactDetail/' + this.id]);
   }
 }

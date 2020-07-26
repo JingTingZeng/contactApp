@@ -1,6 +1,7 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Contact } from '../model/contact';
+import { ContactService } from '../services/contact.service';
 
 declare const navigator;
 declare const ContactFindOptions;
@@ -15,47 +16,29 @@ export class ContactDetailComponent implements OnInit {
 
   public isScroll = false;
 
-  constructor(private route: ActivatedRoute, private router: Router, private zone: NgZone) { }
+  constructor(private route: ActivatedRoute, private router: Router, private contactService: ContactService) {
+    this.contact = new Contact('', '', '', '', '', '', '');
+  }
 
   ngOnInit(): void {
     document.getElementById('detail__info').addEventListener('scroll', this.onScroll);
 
-    this.route.params.subscribe((params) => {
-      console.log(params.id);
-      this.getContacts(['id'], params.id);
-    });
-  }
-
-  getContacts(fileds, filter) {
-    const options = new ContactFindOptions();
-    options.filter = filter;
-    options.multiple = true;
-    options.desiredFields = [
-      navigator.contacts.fieldType.id,
-      navigator.contacts.fieldType.name,
-      navigator.contacts.fieldType.phoneNumbers,
-      navigator.contacts.fieldType.photos,
-      navigator.contacts.fieldType.emails,
-      navigator.contacts.fieldType.addresses
-    ];
-    navigator.contacts.find(fileds, this.contactsSuccess.bind(this), this.contactsFail.bind(this), options);
-  }
-
-  contactsSuccess(contacts) {
-    console.log('contactSuccess:', contacts);
-    this.zone.run(() => {
-      this.contact = contacts;
-    });
-  }
-
-  contactsFail(msg) {
-    console.log('this.contactsFail', msg);
+    const id = this.route.snapshot.paramMap.get('id');
+    this.contact = this.contactService.getContact(id);
   }
 
   goToIndex(e) {
     e.preventDefault();
     e.stopPropagation();
     this.router.navigate(['']);
+  }
+
+  goToEdit(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    this.router.navigate(['createContact'], {
+      queryParams: { id: this.contact.id }
+    });
   }
 
   onScroll = () => {
