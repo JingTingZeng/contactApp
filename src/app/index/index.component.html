@@ -1,16 +1,14 @@
-<div class="wrap">
-  <div class="header">
-    <a (click)="goToCreateContact($event)" class="header__link"><i class="gg-math-plus"></i></a>
-    <h1 class="header__title">CONTACTS.</h1>
-    <div class="search-bar">
-      <input [(ngModel)]="searchText" (keyup.enter)="search()" (blur)="search()" class="search-bar__input" type="text"
-        placeholder="Search contact">
-      <button type="submit" (click)="search()" class="search-bar__btn">
-        <img src="assets/images/icon_search.svg">
-      </button>
-    </div>
+<div class="header">
+  <a (click)="goToCreateContact($event)" class="header__link"><i class="gg-math-plus"></i></a>
+  <h1 class="header__title">CONTACTS.</h1>
+  <div class="search-bar">
+    <input [(ngModel)]="searchText" (keyup.enter)="search()" (blur)="search()" class="search-bar__input" type="text"
+      placeholder="Search contact">
+    <button type="submit" (click)="search()" class="search-bar__btn">
+      <img src="assets/images/icon_search.svg">
+    </button>
   </div>
-  <ul class="contact-list">
-    <app-contact-item *ngFor="let item of contactList" [contact]="item"></app-contact-item>
-  </ul>
 </div>
+<ul class="contact-list">
+  <app-contact-item *ngFor="let item of contactList" [contact]="item"></app-contact-item>
+</ul>
