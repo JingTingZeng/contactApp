@@ -1,6 +1,9 @@
 @import '../../assets/style/variable';
 
 .contact-item {
+  display: flex;
+  align-items: center;
+  padding: 4% 8%;
   margin-bottom: 20px;
   border-radius: 5px;
   background-color: $white;
@@ -9,7 +12,7 @@
   &__link {
     display: flex;
     align-items: center;
-    padding: 4% 8%;
+    flex-grow: 1;
     color: $text-color;
   }
 

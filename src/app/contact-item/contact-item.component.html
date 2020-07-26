@@ -7,8 +7,8 @@
       <div class="contact-item__name">{{contact.name}}</div>
       <div class="contact-item__phone">{{contact.mobile || contact.home}}</div>
     </div>
-    <a [href]="'tel:'+contact.mobile || contact.home" class="contact-item__call">
-      <img src="assets/images/icon_phone.svg">
-    </a>
+  </a>
+  <a [href]="'tel:'+contact.mobile || contact.home" class="contact-item__call">
+    <img src="assets/images/icon_phone.svg">
   </a>
 </li>

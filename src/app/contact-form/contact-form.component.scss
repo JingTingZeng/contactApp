@@ -9,7 +9,7 @@
     flex-direction: row;
     align-items: center;
     height: 70px;
-    padding: 20px 0;
+    padding: 40px 0 20px;
     background-image: $main;
     color: $white;
     transition: all 0.3s ease-out;
@@ -22,7 +22,7 @@
     flex-basis: 50px;
     width: 30px;
     height: 30px;
-    margin-left: 20px;
+    margin-left: 15px;
 
     .gg-math-plus {
       transform: rotate(45deg);
@@ -38,7 +38,7 @@
 
   &__save {
     flex-basis: 50px;
-    margin-right: 25px;
+    margin-right: 20px;
     border: 0;
     background-color: transparent;
     color: $white;
