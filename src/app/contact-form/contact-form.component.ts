@@ -17,8 +17,8 @@ export class ContactFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.route.snapshot.queryParamMap.get('id')) {
-      this.id = this.route.snapshot.queryParamMap.get('id');
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.id = this.route.snapshot.paramMap.get('id');
       this.contact = this.contactService.getContact(this.id);
     }
   }

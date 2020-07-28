@@ -51,8 +51,6 @@
       color: $white;
     }
   }
-
-
 }
 
 
@@ -78,29 +76,29 @@
     overflow: hidden;
     transform: scale(2);
   }
+}
 
-  .form-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
+.form-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
 
-    +.form-item {
-      margin-top: 5px;
-    }
+  +.form-item {
+    margin-top: 5px;
   }
+}
 
-  .form-icon {
-    margin-right: 10px;
-    padding-top: 14px;
+.form-icon {
+  margin-right: 10px;
+  padding-top: 14px;
+  color: $text-color;
+}
+
+.input-group {
+  @include nxjq-input($input-type:'material', $label-color:#888, $line-color:#888, $active-color:#009efd, $bg-color:transparent, $font-size:14px, $text-color:$text-color);
+  flex-grow: 1;
+
+  input {
     color: $text-color;
-  }
-
-  .input-group {
-    @include nxjq-input($input-type:'material', $label-color:#888, $line-color:#888, $active-color:#009efd, $bg-color:transparent, $font-size:14px, $text-color:$text-color);
-    flex-grow: 1;
-
-    input {
-      color: $text-color;
-    }
   }
 }

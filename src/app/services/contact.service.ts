@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Contact } from '../model/contact';
 
 declare const navigator;
@@ -17,11 +17,14 @@ export class ContactService {
       new Contact('2', 'jing ting', '0977886677', '0456378566', '', 'neux.jingtingzeng@gmail.com', '台中市'),
       new Contact('3', 'test', '0977886677', '0256378566', '', 'testets@gmail.com', '台北市')
     ];
+
+
+    // window.fun = (id) => this.getContact(id);
   }
 
-  getContacts(): Contact[] {
-    return this.contacts;
-  }
+  // getContacts(...args): Observable<Contact[]> {
+  //   return of(this.contacts);
+  // }
 
   getContact(id: string) {
     return this.contacts.find((item) => item.id === id);
@@ -44,48 +47,53 @@ export class ContactService {
     return result;
   }
 
-  // getContacts(fileds, filter): Contact[] {
-  //   const options = new ContactFindOptions();
-  //   options.filter = filter;
-  //   options.multiple = true;
-  //   options.desiredFields = [
-  //     navigator.contacts.fieldType.id,
-  //     navigator.contacts.fieldType.name,
-  //     navigator.contacts.fieldType.phoneNumbers,
-  //     navigator.contacts.fieldType.photos,
-  //     navigator.contacts.fieldType.emails,
-  //     navigator.contacts.fieldType.addresses
-  //   ];
-  //   // navigator.contacts.find(fileds, this.contactsSuccess.bind(this), this.contactsFail.bind(this), options);
+  getContacts(fields, filter): Observable<Contact[]> {
+    const options = new ContactFindOptions();
+    options.filter = filter;
+    options.multiple = true;
+    options.desiredFields = [
+      navigator.contacts.fieldType.id,
+      navigator.contacts.fieldType.name,
+      navigator.contacts.fieldType.phoneNumbers,
+      navigator.contacts.fieldType.photos,
+      navigator.contacts.fieldType.emails,
+      navigator.contacts.fieldType.addresses
+    ];
 
-  //   // return Observable.create(observer => {
-  //   //   navigator.contacts.find(
-  //   //     fileds,
-  //   //     result => {
-  //   //       observer.next(result);
-  //   //       observer.complete();
-  //   //     },
-  //   //     error => observer.error(error),
-  //   //     options);
-  //   // });
-  // }
+    return this.getContactFromDevice(fields, options);
+  }
 
-  // contactsSuccess(contacts) {
-  //   console.log('contactSuccess:', contacts);
-  //   const addItems = [];
-  //   alert('Found ' + JSON.stringify(contacts) + ' contacts.');
-  //   contacts.forEach((item) => {
-  //     const mobile = item.phoneNumbers.find((e) => e.type === 'mobile') || '';
-  //     const home = item.phoneNumbers.find((e) => e.type === 'home') || '';
-  //     const newItem = new Contact(item.id, item.name.formatted, mobile.value, home.value, item.photos[0].value, item.emails[0].value, '');
-  //     addItems.push(newItem);
-  //     console.log('items:', addItems);
-  //   });
 
-  //   this.contacts = addItems;
-  // }
+  private getContactFromDevice(fields, options): Observable<Contact[]> {
+    return new Observable(observer => {
+      navigator.contacts.find(
+        fields,
+        resultList => {
+          const contactList = resultList.map(result => {
+            const photo = result?.photos?.length > 0 ? result.photos[0].value : '';
+            const email = result?.emails?.length > 0 ? result.emails[0].value : '';
 
-  // contactsFail(msg) {
-  //   console.log('this.contactsFail', msg);
-  // }
+            return new Contact(
+              result.id,
+              result.name.formatted,
+              result.phoneNumbers?.find(x => x.type === 'mobile')?.value || '',
+              result.phoneNumbers?.find(x => x.type === 'home')?.value || '',
+              photo,
+              email,
+              '');
+          });
+
+          // console.log('contactList:', contactList);
+          this.contacts = contactList;
+          observer.next(contactList);
+          observer.complete();
+        },
+        error => {
+          console.log('contactsFail', error);
+          observer.error(error);
+          observer.complete();
+        },
+        options);
+    });
+  }
 }
